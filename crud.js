@@ -12,8 +12,8 @@ const pool = new Pool({
 const insertar = async (datos) => {
 
     const consulta = {
-        text: "INSERT INTO canciones VALUES ($1, $2, $3, $4) RETURNING *",
-        vaules: datos
+        text: "INSERT INTO canciones VALUES ($1, $2, $3) RETURNING *",
+        values: datos
     };
     const result = await pool.query(consulta);
     return result
