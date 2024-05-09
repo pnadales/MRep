@@ -10,8 +10,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/cancion", async (req, res) => {
-    console.log(req.body, req.query)
     try {
+        console.log(req.body, req.query)
         const datos = Object.values(req.body);
         console.log(datos)
         const respuesta = await insertar(datos)
