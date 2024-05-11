@@ -12,7 +12,7 @@ const pool = new Pool({
 const insertar = async (datos) => {
 
     const consulta = {
-        text: "INSERT INTO canciones VALUES ($1, $2, $3) RETURNING *",
+        text: "INSERT INTO canciones (titulo, artista, tono) VALUES ($1, $2, $3) RETURNING *",
         values: datos
     };
     const result = await pool.query(consulta);
@@ -21,13 +21,13 @@ const insertar = async (datos) => {
 
 const consultar = async () => {
     const result = await pool.query("SELECT * FROM canciones");
-    return result;
+    return result.rows;
 }
 
 const editar = async (datos) => {
     const consulta = {
-        text: "UPDATE canciones SET id=$1, titulo=$2, artista=$3, tono=$4  WHERE id=$1 RETURNING *",
-        vaules: datos
+        text: "UPDATE canciones SET titulo=$2, artista=$3, tono=$4  WHERE id=$1 RETURNING *",
+        values: datos
     }
     const result = await pool.query(consulta);
     return consulta;
